@@ -3,6 +3,16 @@ import { MdPublic } from "react-icons/md";
 
 export const links = [
   {
+    title: "Pages",
+    links: [
+      {
+        name: "posts",
+        icon: <MdPublic />,
+      },
+    ],
+  },
+
+  {
     title: "Dashboard",
     links: [
       {
@@ -12,15 +22,6 @@ export const links = [
     ],
   },
 
-  {
-    title: "Pages",
-    links: [
-      {
-        name: "posts",
-        icon: <MdPublic />,
-      },
-    ],
-  },
   {
     title: "Apps",
     links: [
