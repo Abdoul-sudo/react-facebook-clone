@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Sidebar } from "./components";
+import { Blog, Todolist, Users } from "./pages";
+import { useStateContext } from "./context/ContextProvider";
 
 function App() {
+  const { activeMenu } = useStateContext();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="flex relative">
+        {activeMenu ? (
+          <div className="w-72 fixed sidebar bg-white">
+            <Sidebar />
+          </div>
+        ) : (
+          <div className="w-0">
+            <Sidebar />
+          </div>
+        )}
+        <div className={`bg-main-bg min-h-screen w-full ${activeMenu ? "md:ml-72" : "flex-2"}`}>
+          <Routes>
+            <Route path="/" element={<Blog />} />
+            <Route path="posts" element={<Blog />} />
+            <Route path="todos" element={<Todolist />} />
+            <Route path="users" element={<Users />} />
+            {/* not found route */}
+            <Route path="*" element={<h1>Not Found</h1>} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
