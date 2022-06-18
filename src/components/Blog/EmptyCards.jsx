@@ -1,8 +1,8 @@
 import React from "react";
 
-const Users = () => {
+const EmptyCards = ({ title, image, content }) => {
   return (
-    <div>
+    <>
       <div className="flex justify-center m-7">
         <div className="bg-white sm:px-4 sm:pt-4 rounded-2xl shadow-lg flex flex-col gap-5 select-none" style={{ width: "30rem" }}>
           <div className="bg-gray-300 w-full animate-pulse w-28 h-9 rounded-2xl animate-pulse mb-2"></div>
@@ -18,9 +18,8 @@ const Users = () => {
           </div>
         </div>
       </div>
-      <h1>Users</h1>
-    </div>
+    </>
   );
 };
 
-export default Users;
+export default EmptyCards;

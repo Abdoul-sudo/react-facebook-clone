@@ -20,10 +20,10 @@ function App() {
             <Sidebar />
           </div>
         )}
-        <div className={`bg-main-bg min-h-screen w-full ${activeMenu ? "md:ml-72" : "flex-2"}`}>
+        <div className={`bg-main-bg-fb min-h-screen w-full ${activeMenu ? "md:ml-72" : "flex-2"}`}>
           <Routes>
-            <Route path="/" element={<Blog />} />
-            <Route path="posts" element={<Blog />} />
+            <Route path="/" element={<Blog limit="3" />} />
+            <Route path="posts" element={<Blog limit="3" />} />
             <Route path="todos" element={<Todolist />} />
             <Route path="users" element={<Users />} />
             {/* not found route */}
