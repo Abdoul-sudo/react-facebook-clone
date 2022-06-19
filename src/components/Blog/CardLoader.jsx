@@ -4,7 +4,7 @@ const CardLoader = ({ title, image, content }) => {
   return (
     <>
       <div className="flex flex-col">
-        <div className="bg-white mt-5 w-full rounded-2xl shadow-sm ">
+        <div className="bg-white mt-5 rounded-2xl shadow-sm ">
           {/* username */}
           <div className="flex items-center space-x-2 mx-5 mt-5">
             <div className="rounded-full bg-gray-300 animate-pulse w-10 h-10" width={40} height={40} />
@@ -20,7 +20,7 @@ const CardLoader = ({ title, image, content }) => {
           </div>
 
           {/* buttons */}
-          <div className="flex justify-between items-center rounded-b-2xl bg-white shadow-md text-gray-400 border-t">
+          <div className="flex justify-between items-center rounded-b-2xl bg-white shadow-sm text-gray-400 border-t">
             <div className="inputIconSqueletton rounded-none rounded-bl-2xl">
               <div className="bg-gray-300 w-24 h-7 rounded-2xl animate-pulse"></div>
             </div>
