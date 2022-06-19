@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { useStateContext } from "../context/ContextProvider";
+import { useStateContext } from "../context/GlobalContextProvider";
 import { FaFacebookSquare } from "react-icons/fa";
 import { links } from "../dummy";
 

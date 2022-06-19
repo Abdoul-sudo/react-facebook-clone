@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { ContextProvider } from "./context/ContextProvider";
+import { GlobalContextProvider } from "./context/GlobalContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ContextProvider>
+    <GlobalContextProvider>
       <App />
-    </ContextProvider>
+    </GlobalContextProvider>
   </React.StrictMode>
 );

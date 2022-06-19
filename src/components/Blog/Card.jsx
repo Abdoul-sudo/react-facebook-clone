@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../index";
 import { AiOutlineLike, AiOutlineShareAlt } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 
@@ -18,26 +19,26 @@ const Card = ({ userImage, userName, title, image, content }) => {
 
           {/* Image */}
           <div className=" relative bg-white h-56 md:h-96">
-            {/* <div className="relative bg-white"> */}
             <img className="object-cover h-full w-full" src={image} alt="" />
           </div>
 
+          {/* footer*/}
           <div className="flex justify-between items-center rounded-b-2xl bg-white shadow-md text-gray-400 border-t">
-            <div className="inputIcon rounded-none rounded-bl-2xl">
+            <Button className="inputIcon rounded-none rounded-bl-2xl">
               <AiOutlineLike className="h-4" />
               <p className="text-xs sm:text-base">Like</p>
-            </div>
-            <div className="inputIcon rounded-none">
+            </Button>
+
+            <Button className="inputIcon rounded-none">
               <BiComment className="h-4" />
               <p className="text-xs sm:text-base">Comment</p>
-            </div>
-            <div className="inputIcon rounded-none rounded-br-2xl">
+            </Button>
+
+            <Button className="inputIcon rounded-none rounded-br-2xl">
               <AiOutlineShareAlt className="h-4" />
               <p className="text-xs sm:text-base">Share</p>
-            </div>
+            </Button>
           </div>
-
-          {/* Button */}
         </div>
       </div>
     </>
