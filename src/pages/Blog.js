@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Card, EndScroll, CardLoader } from "../components";
+import { Post, EndScroll, PostLoader } from "../components";
 
 const Blog = (props) => {
   const [posts, setPosts] = useState([]);
@@ -44,17 +44,17 @@ const Blog = (props) => {
         loader={
           page === 1 ? (
             <>
-              <CardLoader /> <CardLoader />
+              <PostLoader /> <PostLoader />
             </>
           ) : (
-            <CardLoader />
+            <PostLoader />
           )
         }
         endMessage={<EndScroll />}
       >
         {posts.map((post) => {
           // let username = findUser(post.userId);
-          return <Card key={post.id} title={post.title} image={post.url} content={post.title} userName="aaa" userId={post.userId} userImage="/Abdoul.jpg" />;
+          return <Post key={post.id} post={post} image={post.url} content={post.title} userId={post.userId} />;
         })}
       </InfiniteScroll>
     </div>

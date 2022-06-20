@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useStateContext } from "../context/GlobalContextProvider";
 import { FaFacebookSquare } from "react-icons/fa";
 import { links } from "../dummy";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 const Sidebar = () => {
   const { activeMenu, setActiveMenu } = useStateContext();
@@ -14,12 +15,18 @@ const Sidebar = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
+
   // Style links
   const activeLink = "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2 bg-sky-400 ";
-  const normalLink = `flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 hover:bg-light-gray m-2`;
+  const normalLink = `flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 hover:bg-sky-100 m-2`;
+  const logoutLink = `flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-rose-600 font-semibold hover:bg-rose-600 hover:text-white  m-2 cursor-pointer`;
 
   return (
-    <nav className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10 ">
+    <nav className="ml-3 h-screen md:overflow-hidden pb-16 ">
       {activeMenu && (
         <>
           <div className="flex justify-between items-center">
@@ -27,18 +34,23 @@ const Sidebar = () => {
               <FaFacebookSquare /> <span>AppExam</span>
             </Link>
           </div>
-          <div className="mt-10">
-            {links.map((item) => (
-              <div key={item.title}>
-                <p className="text-gray-400 m-3 mt-4 uppercase">{item.title}</p>
-                {item.links.map((link) => (
-                  <NavLink to={`/${link.name}`} key={link.name} className={({ isActive }) => (isActive ? activeLink : normalLink)}>
-                    {link.icon}
-                    <span className="capitalize">{link.name}</span>
-                  </NavLink>
-                ))}
-              </div>
-            ))}
+          <div className="flex flex-col justify-between h-full">
+            <div className="mt-10">
+              {links.map((item) => (
+                <div key={item.title}>
+                  <p className="text-gray-400 m-3 mt-4 uppercase">{item.title}</p>
+                  {item.links.map((link) => (
+                    <NavLink to={`/${link.name}`} key={link.name} className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                      {link.icon}
+                      <span className="capitalize">{link.name}</span>
+                    </NavLink>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div className={logoutLink} onClick={handleLogout}>
+              <RiLogoutBoxLine /> <span className="capitalize">Logout</span>
+            </div>
           </div>
         </>
       )}
