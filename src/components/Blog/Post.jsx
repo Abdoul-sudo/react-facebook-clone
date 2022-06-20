@@ -4,8 +4,8 @@ import { AiOutlineLike, AiOutlineShareAlt } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import axios from "axios";
 
-const Card = ({ userImage, userName, title, image, userId }) => {
-  const [username, setUsername] = useState("");
+const Card = ({ post, userId }) => {
+  const [user, setUser] = useState("");
   useEffect(() => {
     const findUser = () => {
       axios({
@@ -13,7 +13,8 @@ const Card = ({ userImage, userName, title, image, userId }) => {
         url: `http://localhost:3002/users/${userId}`,
       })
         .then((resp) => {
-          setUsername(resp.data.name);
+          console.log("🚀 ~aaaaaaaaaaa file: Card.jsx ~ line 16 ~ .then ~ resp", resp);
+          setUser(resp.data);
         })
         .catch((error) => {
           console.log("🚀 ~ file: Blog.jsx ~ line 36 ~ findUser ~ error", error);
@@ -28,17 +29,19 @@ const Card = ({ userImage, userName, title, image, userId }) => {
         <div className=" bg-white mt-5 rounded-2xl shadow-sm">
           {/* Profile */}
           <div className="flex items-center space-x-2 mx-5 mt-5">
-            <img className="rounded-full" src={userImage} width={40} height={40} alt="" />
-            <div className="font-medium">{username}</div>
+            <img className="rounded-full" src={user.image} width={40} height={40} alt="" />
+            <div className="font-medium">{user.username}</div>
           </div>
 
           {/* Title */}
-          <p className="py-4 mx-5">{title}</p>
+          <p className="py-4 mx-5">{post.title}</p>
 
           {/* Image */}
-          <div className=" relative bg-white h-56 md:h-96">
-            <img className="object-cover h-full w-full" src={image} alt="" />
-          </div>
+          {post.url && (
+            <div className=" relative bg-white h-56 md:h-96">
+              <img className="object-cover h-full w-full" src={post.url} alt="" />
+            </div>
+          )}
 
           {/* footer*/}
           <div className="flex justify-between items-center rounded-b-2xl bg-white shadow-sm text-gray-400 border-t">
