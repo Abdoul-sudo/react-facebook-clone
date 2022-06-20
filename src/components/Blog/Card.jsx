@@ -6,6 +6,7 @@ import axios from "axios";
 
 const Card = ({ userImage, userName, title, image, userId }) => {
   const [username, setUsername] = useState("");
+
   useEffect(() => {
     const findUser = () => {
       axios({
