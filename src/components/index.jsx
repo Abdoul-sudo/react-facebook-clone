@@ -6,3 +6,6 @@ export { default as Post } from "./Blog/Post";
 export { default as EndScroll } from "./Blog/EndScroll";
 export { default as Loader } from "./Blog/Loader";
 export { default as PostLoader } from "./Blog/PostLoader";
+export { default as Comment } from "./Blog/Comment";
+export { default as CommentLoader } from "./Blog/CommentLoader";
+export { default as AddComment } from "./Blog/AddComment";

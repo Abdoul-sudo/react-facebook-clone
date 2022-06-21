@@ -42,6 +42,15 @@ module.exports = {
       backgroundImage: {
         "hero-pattern": "url('https://demos.wrappixel.com/premium-admin-templates/react/flexy-react/main/static/media/welcome-bg-2x-svg.25338f53.svg')",
       },
+      keyframes: {
+        rotateLike: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+      },
+      animation: {
+        rotateLike: "rotateLike 200ms ease-in-out",
+      },
     },
   },
   plugins: [require("tw-elements/dist/plugin")],

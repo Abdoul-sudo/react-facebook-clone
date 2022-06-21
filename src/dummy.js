@@ -6,6 +6,7 @@ export const links = [
     title: "Pages",
     links: [
       {
+        path: "",
         name: "posts",
         icon: <MdPublic />,
       },
@@ -16,6 +17,7 @@ export const links = [
     title: "Dashboard",
     links: [
       {
+        path: "users",
         name: "users",
         icon: <RiUserSettingsFill />,
       },
@@ -26,6 +28,7 @@ export const links = [
     title: "Apps",
     links: [
       {
+        path: "todos",
         name: "todos",
         icon: <RiTodoFill />,
       },

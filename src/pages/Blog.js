@@ -12,7 +12,7 @@ const Blog = (props) => {
 
   const [page, setpage] = useState(1);
 
-  // On load la page 1 when componentDidMount
+  // GET POSTS LAZY LOADING ---------------------------------------------------------------------------------------
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -20,12 +20,12 @@ const Blog = (props) => {
   const fetchPosts = () => {
     axios({
       method: "GET",
-      url: `http://localhost:${process.env.REACT_APP_API_PORT}/posts`,
+      url: `${process.env.REACT_APP_API_SERVER}/posts`,
       params: { _page: page, _limit: props.limit },
     })
       .then((resp) => {
         setPosts([...posts, ...resp.data]);
-        if (resp.length === 0 || resp.length < props.limit) {
+        if (resp.data.length === 0 || resp.data.length < props.limit) {
           sethasMore(false);
         }
         setpage(page + 1);
@@ -35,13 +35,18 @@ const Blog = (props) => {
       });
   };
 
-  const handleLike = (postId) => {
+  // LIKE ---------------------------------------------------------------------------------------
+  const handleLike = (postId, userId) => {
     const post = posts.find((post) => post.id === postId);
-    post.isLiked = !post.isLiked;
+    if (post.userIdLike.includes(userId)) {
+      post.userIdLike = post.userIdLike.filter((user) => user !== userId);
+    } else {
+      post.userIdLike.push(userId);
+    }
 
     axios({
       method: "PUT",
-      url: `${process.env.REACT_APP_API_PORT}/posts/${postId}`,
+      url: `${process.env.REACT_APP_API_SERVER}/posts/${postId}`,
       headers: { "Content-Type": "application/json" },
       data: JSON.stringify(post),
     })
@@ -52,14 +57,14 @@ const Blog = (props) => {
           }
           return post;
         });
-        console.log("🚀 ~****************** file: Blog.js ~ line 54 ~ updatedPost ~ updatedPost", updatedPost);
         setPosts(updatedPost);
-        // setpage(page + 1);
       })
       .catch((error) => {
         console.log("🚀 ~ file: Blog.js ~ line 51 ~ handleLike ~ error", error);
       });
   };
+
+  // VIEW ---------------------------------------------------------------------------------------
   return (
     <div className="h-full pb-44 pt-6 bg-main-bg-fb flex-grow xl:mr-40 overflow-y-auto">
       <InfiniteScroll
@@ -79,8 +84,7 @@ const Blog = (props) => {
         endMessage={<EndScroll />}
       >
         {posts.map((post) => {
-          // let username = findUser(post.userId);
-          return <Post key={post.id} post={post} image={post.url} content={post.title} userId={post.userId} handleLike={handleLike} />;
+          return <Post key={post.id} post={post} image={post.url} content={post.title} handleLike={handleLike} />;
         })}
       </InfiniteScroll>
     </div>

@@ -30,7 +30,7 @@ const Sidebar = () => {
       {activeMenu && (
         <>
           <div className="flex justify-between items-center">
-            <Link to="/" onClick={handleCloseSidebar} className="items-center gap-3 ml-3 mt-4 flex text-2xl font-extrabold tracking-light text-slate-900 text-sky-900">
+            <Link to="#" onClick={handleCloseSidebar} className="items-center gap-3 ml-3 mt-4 flex text-2xl font-extrabold tracking-light text-slate-900 text-sky-900">
               <FaFacebookSquare /> <span>AppExam</span>
             </Link>
           </div>
@@ -40,7 +40,7 @@ const Sidebar = () => {
                 <div key={item.title}>
                   <p className="text-gray-400 m-3 mt-4 uppercase">{item.title}</p>
                   {item.links.map((link) => (
-                    <NavLink to={`/${link.name}`} key={link.name} className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+                    <NavLink to={`/${link.path}`} key={link.name} className={({ isActive }) => (isActive ? activeLink : normalLink)}>
                       {link.icon}
                       <span className="capitalize">{link.name}</span>
                     </NavLink>

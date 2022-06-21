@@ -6,13 +6,13 @@ import { useStateContext } from "./context/GlobalContextProvider";
 
 function App() {
   const { activeMenu, userConnected } = useStateContext();
-  console.log("🚀 ~ file: App.js ~ line 9 ~ App ~ userConnected", userConnected);
 
   return (
     <BrowserRouter>
       <div className="flex relative">
         {userConnected && (
           <>
+            {/* Hide Sidebar for mobile */}
             {activeMenu ? (
               <div className="w-72 fixed sidebar bg-white">
                 <Sidebar />
@@ -24,6 +24,7 @@ function App() {
             )}
           </>
         )}
+
         <div className={`bg-main-bg-fb min-h-screen w-full ${activeMenu && userConnected ? "md:ml-72" : "flex-2"}`}>
           <Routes>
             {userConnected ? (
