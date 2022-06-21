@@ -22,7 +22,7 @@ const Login = () => {
 
     axios({
       method: "POST",
-      url: `http://localhost:3002/users`,
+      url: `${process.env.REACT_APP_API_SERVER}/users`,
       headers: { "Content-Type": "application/json" },
       data: JSON.stringify(formData),
     })

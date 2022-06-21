@@ -1,4 +1,5 @@
 import axios from "axios";
+import postcss from "postcss";
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Post, EndScroll, PostLoader } from "../components";
@@ -19,7 +20,7 @@ const Blog = (props) => {
   const fetchPosts = () => {
     axios({
       method: "GET",
-      url: `http://localhost:3002/posts`,
+      url: `http://localhost:${process.env.REACT_APP_API_PORT}/posts`,
       params: { _page: page, _limit: props.limit },
     })
       .then((resp) => {
@@ -34,6 +35,31 @@ const Blog = (props) => {
       });
   };
 
+  const handleLike = (postId) => {
+    const post = posts.find((post) => post.id === postId);
+    post.isLiked = !post.isLiked;
+
+    axios({
+      method: "PUT",
+      url: `${process.env.REACT_APP_API_PORT}/posts/${postId}`,
+      headers: { "Content-Type": "application/json" },
+      data: JSON.stringify(post),
+    })
+      .then((resp) => {
+        const updatedPost = posts.map((post) => {
+          if (post.id === postId) {
+            return resp.data;
+          }
+          return post;
+        });
+        console.log("🚀 ~****************** file: Blog.js ~ line 54 ~ updatedPost ~ updatedPost", updatedPost);
+        setPosts(updatedPost);
+        // setpage(page + 1);
+      })
+      .catch((error) => {
+        console.log("🚀 ~ file: Blog.js ~ line 51 ~ handleLike ~ error", error);
+      });
+  };
   return (
     <div className="h-full pb-44 pt-6 bg-main-bg-fb flex-grow xl:mr-40 overflow-y-auto">
       <InfiniteScroll
@@ -54,7 +80,7 @@ const Blog = (props) => {
       >
         {posts.map((post) => {
           // let username = findUser(post.userId);
-          return <Post key={post.id} post={post} image={post.url} content={post.title} userId={post.userId} />;
+          return <Post key={post.id} post={post} image={post.url} content={post.title} userId={post.userId} handleLike={handleLike} />;
         })}
       </InfiniteScroll>
     </div>

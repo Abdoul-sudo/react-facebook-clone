@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../index";
-import { AiOutlineLike, AiOutlineShareAlt } from "react-icons/ai";
+import { AiFillLike, AiOutlineLike, AiOutlineShareAlt } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import axios from "axios";
 
-const Card = ({ post, userId }) => {
+const Card = ({ post, userId, handleLike }) => {
   const [user, setUser] = useState("");
   useEffect(() => {
     const findUser = () => {
       axios({
         method: "GET",
-        url: `http://localhost:3002/users/${userId}`,
+        url: `${process.env.REACT_APP_API_PORT}/users/${userId}`,
       })
         .then((resp) => {
-          console.log("🚀 ~aaaaaaaaaaa file: Card.jsx ~ line 16 ~ .then ~ resp", resp);
           setUser(resp.data);
         })
         .catch((error) => {
-          console.log("🚀 ~ file: Blog.jsx ~ line 36 ~ findUser ~ error", error);
+          console.log("🚀 ~ file: Post.jsx ~ line 19 ~ findUser ~ error", error);
         });
     };
     findUser();
@@ -45,9 +44,9 @@ const Card = ({ post, userId }) => {
 
           {/* footer*/}
           <div className="flex justify-between items-center rounded-b-2xl bg-white shadow-sm text-gray-400 border-t">
-            <Button className="inputIcon rounded-none rounded-bl-2xl">
-              <AiOutlineLike className="h-4" />
-              <p className="text-xs sm:text-base">Like</p>
+            <Button className="inputIcon rounded-none rounded-bl-2xl" onClick={() => handleLike(post.id)}>
+              {post.isLiked ? <AiFillLike className="h-4 text-blue-500" /> : <AiOutlineLike className="h-4" />}
+              <p className={`text-xs sm:text-base ${post.isLiked && "text-blue-500"}`}>Like</p>
             </Button>
 
             <Button className="inputIcon rounded-none">
@@ -59,6 +58,26 @@ const Card = ({ post, userId }) => {
               <AiOutlineShareAlt className="h-4" />
               <p className="text-xs sm:text-base">Share</p>
             </Button>
+          </div>
+
+          {/* Comment section */}
+          <div>
+            <div className="flex justify-between items-center rounded-b-2xl bg-white shadow-sm text-gray-400 border-t">
+              <Button className="inputIcon rounded-none rounded-bl-2xl" onClick={() => handleLike(post.id)}>
+                {post.isLiked ? <AiFillLike className="h-4 text-blue-500" /> : <AiOutlineLike className="h-4" />}
+                <p className={`text-xs sm:text-base ${post.isLiked && "text-blue-500"}`}>Like</p>
+              </Button>
+
+              <Button className="inputIcon rounded-none">
+                <BiComment className="h-4" />
+                <p className="text-xs sm:text-base">Comment</p>
+              </Button>
+
+              <Button className="inputIcon rounded-none rounded-br-2xl">
+                <AiOutlineShareAlt className="h-4" />
+                <p className="text-xs sm:text-base">Share</p>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

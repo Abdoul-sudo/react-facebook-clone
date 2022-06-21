@@ -15,7 +15,7 @@ const Login = () => {
 
     axios({
       method: "POST",
-      url: `http://localhost:3002/login`,
+      url: `${process.env.REACT_APP_API_PORT}/login`,
       headers: { "Content-Type": "application/json" },
       data: JSON.stringify(formData),
     })
@@ -27,6 +27,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(JSON.stringify(formData));
+        console.log(process.env.REACT_APP_API_PORT);
         console.log("🚀 ~ file: Blog.jsx ~ line 36 ~ findUser ~ error", error);
       });
   };
