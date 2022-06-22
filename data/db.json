@@ -197,6 +197,12 @@
       "postId": 1,
       "content": "aaa",
       "id": 21
+    },
+    {
+      "userId": 1,
+      "postId": 1,
+      "content": "opop",
+      "id": 22
     }
   ],
   "posts": [
@@ -207,8 +213,8 @@
       "url": "https://i.pinimg.com/750x/eb/47/44/eb4744eaa3b3ccd89749fa3470e2b0de.jpg",
       "thumbnailUrl": "https://via.placeholder.com/150/92c952",
       "userIdLike": [
-        1,
-        2
+        2,
+        1
       ],
       "showComment": false
     },

@@ -19,7 +19,7 @@ const AddComment = ({ postId, addComment }) => {
         <img className="rounded-full object-cover" src={userConnected.image ? userConnected.image : "./user_empty.jpg"} width={30} height={30} alt="" />
         <div className="absolute rounded-full bg-green-500 w-2.5 h-2.5 border border-white right-0 bottom-0.5"></div>
       </div>
-      <input className="bg-gray-100 text-sm text-gray-600 w-full rounded-full px-4 py-2" type="text" placeholder="Enter a comment" onKeyUp={(e) => handleKeyUp(e)} ref={inputComment} />
+      <input className="bg-gray-100 text-sm sm:text-base text-gray-600 w-full rounded-full px-4 py-2" type="text" placeholder="Enter a comment" onKeyUp={(e) => handleKeyUp(e)} ref={inputComment} />
     </div>
   );
 };

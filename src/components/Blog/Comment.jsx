@@ -31,7 +31,7 @@ const Comment = ({ comment }) => {
         </div>
 
         {/* username and his comment */}
-        <div className="bg-gray-100 w-full rounded-xl px-4 pt-1 pb-2 text-xs text-gray-600 ">
+        <div className="bg-gray-100 w-full rounded-xl px-4 pt-1 pb-2 text-xs sm:text-base text-gray-600 ">
           <p className="font-semibold mb-1">{user.username}</p>
           <p>{comment.content}</p>
         </div>
