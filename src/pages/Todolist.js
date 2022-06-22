@@ -170,7 +170,8 @@ export default function Todolist() {
   // };
 
   return (
-    <div>
+    <div className="bg-main-bg-fb mx-auto max-w-md md:max-w-lg">
+      <div>todos</div>
       {/* {this.state.modify ? <AddTask func={this.updateTask} id={this.state.id} taskWeShouldUpdate={this.state.taskWeShouldUpdate} /> : <AddTask func={this.addTask} id={this.state.id} taskWeShouldUpdate={this.state.taskWeShouldUpdate} />}
         <Search handleSearch={this.handleSearch} />
         <Task tasks={this.state.tasks} deleteTask={this.deleteTask} isModify={this.isModify} toogleTask={this.toogleTask} isAllChecked={this.state.isAllChecked} handleCheck={this.handleCheck} handleAllCheck={this.handleAllCheck} deleteAllChecked={this.deleteAllChecked} /> */}

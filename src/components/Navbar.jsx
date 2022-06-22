@@ -41,10 +41,10 @@ const Navbar = () => {
   }, [screenSize]);
 
   return (
-    <div className="flex justify-between p-2 md:mx-6 relative ">
+    <div className="fixed-top w-full flex justify-between py-2 md:pl-10 md:pr-4 items-center shadow-md">
       {/* <NavButton title="Menu" customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} color="blue" icon={<AiOutlineMenu />} /> */}
       <div className="flex justify-between items-center">
-        <Link to="#" className="items-center gap-3 ml-3 mt-4 flex text-2xl font-extrabold tracking-light text-slate-900 text-sky-900">
+        <Link to="#" className="items-center gap-3 flex text-2xl font-extrabold tracking-light text-slate-900 text-sky-900">
           <FaFacebookSquare /> <span>AppExam</span>
         </Link>
       </div>
@@ -53,7 +53,7 @@ const Navbar = () => {
         <NavButton title="Chat" customFunc={() => handleClick("chat")} dotColor="#03C9D7" color="blue" icon={<BsChatLeft />} />
         <NavButton title="Notification" customFunc={() => handleClick("notification")} dotColor="#03C9D7" color="blue" icon={<RiNotificationLine />} /> */}
         <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" onClick={() => handleClick("userProfile")}>
-          <UserConnectedProfile />
+          <UserConnectedProfile picDimension="40" />
           <p>
             <span className="text-gray-400 text-14">Hi, </span> <span className="text-gray-400 font-bold ml-1 text-14">{userConnected.username}</span>
           </p>

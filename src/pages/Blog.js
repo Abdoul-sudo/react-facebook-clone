@@ -65,7 +65,7 @@ const Blog = (props) => {
 
   // VIEW ---------------------------------------------------------------------------------------
   return (
-    <div className="h-full pb-44 pt-6 bg-main-bg-fb flex-grow xl:mr-40 overflow-y-auto">
+    <div className="h-full bg-main-bg-fb flex-grow xl:mr-40 overflow-y-auto">
       <InfiniteScroll
         className="bg-main-bg-fb mx-auto max-w-md md:max-w-lg" // centre les posts
         dataLength={posts.length}

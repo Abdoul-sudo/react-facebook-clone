@@ -16,7 +16,7 @@ const AddComment = ({ postId, addComment }) => {
 
   return (
     <div className="flex items-center gap-3 mt-5">
-      <UserConnectedProfile />
+      <UserConnectedProfile picDimension="35" />
       <input className="bg-gray-100 text-sm sm:text-base text-gray-600 w-full rounded-full px-4 py-2" type="text" placeholder="Enter a comment" onKeyUp={(e) => handleKeyUp(e)} ref={inputComment} />
     </div>
   );

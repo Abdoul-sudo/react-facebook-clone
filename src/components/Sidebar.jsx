@@ -26,7 +26,7 @@ const Sidebar = () => {
   const logoutLink = `flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-rose-600 font-semibold hover:bg-rose-600 hover:text-white  m-2 cursor-pointer`;
 
   return (
-    <nav className="ml-3 h-screen md:overflow-hidden pb-16 ">
+    <nav className="ml-3 h-screen md:overflow-hidden pb-16 pt-5 ">
       {activeMenu && (
         <>
           <div className="flex flex-col justify-between h-full">

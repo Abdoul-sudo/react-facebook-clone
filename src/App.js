@@ -9,15 +9,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="flex bg-main-bg-fb">
+      <div className="flex bg-main-bg-fb h-screen">
         {userConnected && (
           <div className="flex flex-col">
-            <div className="fixed-top  bg-white navbar w-full top-0 right-0">
-              <Navbar />
-            </div>
+            <Navbar />
             {/* Hide Sidebar for mobile */}
             {activeMenu ? (
-              <div className="w-72 sidebar fixed mt-20">
+              <div className="w-72 sidebar fixed top-11">
                 <Sidebar />
               </div>
             ) : (
@@ -28,7 +26,7 @@ function App() {
           </div>
         )}
 
-        <div className={`bg-main-bg-fb w-full ${activeMenu && userConnected ? "md:ml-72" : "flex-2"}`}>
+        <div className={`bg-main-bg-fb w-full mt-20 ${activeMenu && userConnected ? "md:ml-72" : "flex-2"}`}>
           <Routes>
             {userConnected ? (
               <>
