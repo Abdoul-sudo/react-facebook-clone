@@ -9,13 +9,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="flex bg-main-bg-fb h-screen">
+      <div className="flex bg-main-bg-fb min-h-screen">
         {userConnected && (
           <div className="flex flex-col">
             <Navbar />
             {/* Hide Sidebar for mobile */}
             {activeMenu ? (
-              <div className="w-72 sidebar fixed top-11">
+              <div className="w-72 fixed top-11">
                 <Sidebar />
               </div>
             ) : (
