@@ -7,18 +7,22 @@ const AddComment = ({ postId, addComment }) => {
   const inputComment = useRef();
 
   // input submit by enter key
-  const handleKeyUp = (e) => {
-    if (e.key === "Enter") {
-      addComment(postId, e.target.value);
-      inputComment.current.value = ""; // reset input
-    }
+  const handleAddComment = (e) => {
+    e.preventDefault();
+    if (!inputComment.current.value) return;
+
+    addComment(postId, inputComment.current.value);
+    inputComment.current.value = ""; // reset input
   };
 
   return (
-    <div className="flex items-center gap-3 mt-5">
-      <UserConnectedProfile picDimension="35" />
-      <input className="bg-gray-100 text-sm sm:text-base text-gray-600 w-full rounded-full px-4 py-2" type="text" placeholder="Enter a comment" onKeyUp={(e) => handleKeyUp(e)} ref={inputComment} />
-    </div>
+    <form className="flex items-center gap-3 mt-5">
+      <UserConnectedProfile size="35" />
+      <input className="bg-gray-100 text-sm sm:text-base text-gray-600 w-full rounded-full px-4 py-2" type="text" placeholder="Enter a comment" ref={inputComment} />
+      <button type="submit" hidden onClick={(e) => handleAddComment(e)}>
+        Submit
+      </button>
+    </form>
   );
 };
 

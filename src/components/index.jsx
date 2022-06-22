@@ -7,6 +7,7 @@ export { default as UserConnectedProfile } from "./UserConnectedProfile";
 
 // Blog
 export { default as Post } from "./Blog/Post";
+export { default as AddPost } from "./Blog/AddPost";
 export { default as EndScroll } from "./Blog/EndScroll";
 export { default as Loader } from "./Blog/Loader";
 export { default as PostLoader } from "./Blog/PostLoader";

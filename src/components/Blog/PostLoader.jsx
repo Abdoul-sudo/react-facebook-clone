@@ -1,6 +1,6 @@
 import React from "react";
 
-const CardLoader = ({ title, image, content }) => {
+const PostLoader = ({ title, image, content }) => {
   return (
     <>
       <div className="flex flex-col">
@@ -37,4 +37,4 @@ const CardLoader = ({ title, image, content }) => {
   );
 };
 
-export default CardLoader;
+export default PostLoader;

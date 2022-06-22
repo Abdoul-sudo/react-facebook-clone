@@ -5,6 +5,7 @@ import { BiComment } from "react-icons/bi";
 import axios from "axios";
 import { Comment, CommentLoader, AddComment } from "../index";
 import { useStateContext } from "../../context/GlobalContextProvider";
+import { UserConnectedProfile } from "../index";
 
 const Card = ({ post, handleLike }) => {
   const [user, setUser] = useState("");
@@ -89,7 +90,6 @@ const Card = ({ post, handleLike }) => {
         console.log("🚀 ~ file: Post.jsx ~ line 83 ~ addComment ~ error", error);
       });
   };
-
   // VIEW ---------------------------------------------------------------------------------------
   return (
     <>
@@ -97,7 +97,8 @@ const Card = ({ post, handleLike }) => {
         <div className=" bg-white mt-5 rounded-2xl shadow-sm">
           {/* Profile */}
           <div className="flex items-center space-x-2 mx-5 mt-5">
-            <img className="rounded-full" src={user.image ? user.image : "./user_empty.jpg"} width={40} height={40} alt="" />
+            {userConnected.email === user.email && userConnected.username === user.username ? <UserConnectedProfile size="40" /> : <img className="rounded-full" src={user.image ? process.env.REACT_APP_IMAGE_PATH + user.image : `${process.env.REACT_APP_IMAGE_PATH}user_empty.jpg`} width={40} height={40} alt="" />}
+
             <div className="font-medium">{user.username}</div>
           </div>
 
@@ -107,7 +108,7 @@ const Card = ({ post, handleLike }) => {
           {/* Image */}
           {post.url && (
             <div className=" bg-white h-56 md:h-96">
-              <img className="object-cover h-full w-full" src={post.url} alt="" />
+              <img className="object-cover h-full w-full" src={process.env.REACT_APP_IMAGE_PATH + post.url} alt="" />
             </div>
           )}
 

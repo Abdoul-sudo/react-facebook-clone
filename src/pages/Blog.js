@@ -1,8 +1,7 @@
 import axios from "axios";
-import postcss from "postcss";
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Post, EndScroll, PostLoader } from "../components";
+import { Post, EndScroll, PostLoader, AddPost } from "../components";
 
 const Blog = (props) => {
   const [posts, setPosts] = useState([]);
@@ -11,16 +10,17 @@ const Blog = (props) => {
 
   const [page, setpage] = useState(1);
 
-  // GET POSTS LAZY LOADING ---------------------------------------------------------------------------------------
+  // POSTS  ---------------------------------------------------------------------------------------
   useEffect(() => {
     fetchPosts();
   }, []);
 
+  // GET
   const fetchPosts = () => {
     axios({
       method: "GET",
       url: `${process.env.REACT_APP_API_SERVER}/posts`,
-      params: { _page: page, _limit: props.limit },
+      params: { _page: page, _limit: props.limit, _sort: "id", _order: "desc" },
     })
       .then((resp) => {
         setPosts([...posts, ...resp.data]);
@@ -31,6 +31,22 @@ const Blog = (props) => {
       })
       .catch((error) => {
         console.log("🚀 ~ file: Blog.jsx ~ line 31 ~ fetchPosts ~ error", error);
+      });
+  };
+
+  // POST
+  const addPost = (newPost) => {
+    axios({
+      method: "POST",
+      url: `${process.env.REACT_APP_API_SERVER}/posts`,
+      headers: { "Content-Type": "application/json" },
+      data: JSON.stringify(newPost),
+    })
+      .then((resp) => {
+        setPosts([resp.data, ...posts]);
+      })
+      .catch((error) => {
+        console.log("🚀 ~ file: Blog.js ~ line 48 ~ addPost ~ error", error);
       });
   };
 
@@ -66,20 +82,15 @@ const Blog = (props) => {
   // VIEW ---------------------------------------------------------------------------------------
   return (
     <div className="h-full bg-main-bg-fb flex-grow xl:mr-40 overflow-y-auto">
+      <div className="mx-auto max-w-md md:max-w-lg">
+        <AddPost addPost={addPost} />
+      </div>
       <InfiniteScroll
-        className="bg-main-bg-fb mx-auto max-w-md md:max-w-lg" // centre les posts
+        className="mx-auto max-w-md md:max-w-lg" // centre les posts
         dataLength={posts.length}
         next={fetchPosts}
         hasMore={hasMore}
-        loader={
-          page === 1 ? (
-            <>
-              <PostLoader /> <PostLoader />
-            </>
-          ) : (
-            <PostLoader />
-          )
-        }
+        loader={<PostLoader />}
         endMessage={<EndScroll />}
       >
         {posts.map((post) => {
