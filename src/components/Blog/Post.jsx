@@ -106,7 +106,7 @@ const Card = ({ post, handleLike }) => {
 
           {/* Image */}
           {post.url && (
-            <div className=" relative bg-white h-56 md:h-96">
+            <div className=" bg-white h-56 md:h-96">
               <img className="object-cover h-full w-full" src={post.url} alt="" />
             </div>
           )}
@@ -154,7 +154,7 @@ const Card = ({ post, handleLike }) => {
                     ))}
                   </div>
                   {hasMore && (
-                    <button className="text-xs text-gray-400 font-semibold mt-6 hover:underline cursor-pointer" onClick={fetchComments}>
+                    <button className="text-xs sm:text-base text-gray-400 font-semibold mt-6 hover:underline cursor-pointer" onClick={fetchComments}>
                       View more ...
                     </button>
                   )}

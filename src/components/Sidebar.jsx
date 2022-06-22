@@ -29,11 +29,6 @@ const Sidebar = () => {
     <nav className="ml-3 h-screen md:overflow-hidden pb-16 ">
       {activeMenu && (
         <>
-          <div className="flex justify-between items-center">
-            <Link to="#" onClick={handleCloseSidebar} className="items-center gap-3 ml-3 mt-4 flex text-2xl font-extrabold tracking-light text-slate-900 text-sky-900">
-              <FaFacebookSquare /> <span>AppExam</span>
-            </Link>
-          </div>
           <div className="flex flex-col justify-between h-full">
             <div className="mt-10">
               {links.map((item) => (

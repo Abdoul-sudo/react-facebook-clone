@@ -6,7 +6,6 @@ import { Post, EndScroll, PostLoader } from "../components";
 
 const Blog = (props) => {
   const [posts, setPosts] = useState([]);
-  const [users, setUsers] = useState([{ 1: "sds" }]);
 
   const [hasMore, sethasMore] = useState(true);
 
