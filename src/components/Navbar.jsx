@@ -41,7 +41,7 @@ const Navbar = () => {
   }, [screenSize]);
 
   return (
-    <div className="fixed-top w-full flex justify-between py-2 md:pl-10 md:pr-4 items-center shadow-md">
+    <div className="fixed-top w-full flex justify-between py-2 md:pl-10 md:pr-4 items-center shadow-md bg-white">
       {/* <NavButton title="Menu" customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} color="blue" icon={<AiOutlineMenu />} /> */}
       <div className="flex justify-between items-center">
         <Link to="#" className="items-center gap-3 flex text-2xl font-extrabold tracking-light text-slate-900 text-sky-900">
