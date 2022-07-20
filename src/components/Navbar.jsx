@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -13,8 +13,10 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
   </button>
 );
 
-const Navbar = () => {
+const Navbar = ({ handleLogout }) => {
   const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setScreenSize, userConnected } = useStateContext();
+
+  const [dropdownProfileDisplay, setDropdownProfileDisplay] = useState("hidden");
 
   // A chq resize, on set le screenSize
   useEffect(() => {
@@ -41,55 +43,48 @@ const Navbar = () => {
   }, [screenSize]);
 
   return (
-    <div className="fixed-top w-full flex justify-between py-2 md:pl-10 md:pr-4 items-center shadow-md bg-white">
-      {/* <NavButton title="Menu" customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} color="blue" icon={<AiOutlineMenu />} /> */}
-      <div className="flex justify-between items-center">
-        <Link to="#" className="items-center gap-3 flex text-2xl font-extrabold tracking-light text-slate-900 text-sky-900">
-          <FaFacebookSquare /> <span>AppExam</span>
-        </Link>
-      </div>
-      <div className="flex">
-        {/* <NavButton title="Cart" customFunc={() => handleClick("cart")} color="blue" icon={<FiShoppingCart />} />
-        <NavButton title="Chat" customFunc={() => handleClick("chat")} dotColor="#03C9D7" color="blue" icon={<BsChatLeft />} />
-        <NavButton title="Notification" customFunc={() => handleClick("notification")} dotColor="#03C9D7" color="blue" icon={<RiNotificationLine />} /> */}
-        <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" data-dropdown-toggle="dropdownUserProfile">
-          <UserConnectedProfile size="40" />
-          <p>
-            <span className="text-gray-400 text-14">Hi, </span> <span className="text-gray-400 font-bold ml-1 text-14">{userConnected.username}</span>
-          </p>
-          <MdKeyboardArrowDown className="text-gray-400 text-14" />
+    <>
+      <div className="fixed-top w-full flex justify-between py-2 md:pl-10 md:pr-4 items-center shadow-md bg-white">
+        <div className="flex justify-between items-center">
+          <Link to="/" className="items-center gap-3 flex text-2xl font-extrabold tracking-light text-slate-900 text-sky-900">
+            <FaFacebookSquare /> <span>AppExam</span>
+          </Link>
         </div>
+        <div className="flex">
+          {/* Profile */}
+          <button onClick={() => (dropdownProfileDisplay == "hidden" ? setDropdownProfileDisplay("block") : setDropdownProfileDisplay("hidden"))} className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" data-dropdown-toggle="dropdownUserProfile" type="button">
+            <UserConnectedProfile size="40" />
+            <p>
+              <span className="text-gray-400 text-14">Hi, </span> <span className="text-gray-400 font-bold ml-1 text-14">{userConnected.username}</span>
+            </p>
+            <MdKeyboardArrowDown className="text-gray-400 text-14" />
+          </button>
+        </div>
+      </div>
 
-        {/* <div id="dropdownUserProfile" className="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-          <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+      {/* Dropdown profile */}
+      <div className="">
+        <div id="dropdownUserProfile" className={`${dropdownProfileDisplay} fixed right-3 top-16 w-44 p-2 border-t bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700`} style={{ zIndex: 10001 }}>
+          <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
             <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                Dashboard
+              <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                Lorem, ipsum.
               </a>
             </li>
             <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                Settings
+              <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                Lorem, ipsum.
               </a>
             </li>
             <li>
-              <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                Earnings
+              <a onClick={handleLogout} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-red-500">
+                Sign out
               </a>
             </li>
           </ul>
-          <div className="py-1">
-            <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-              Separated link
-            </a>
-          </div>
-        </div> */}
-        {/* {isClicked.cart && <Cart />}
-        {isClicked.chat && <Chat />}
-        {isClicked.notification && <Notification />}
-        {isClicked.userProfile && <UserProfile />} */}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

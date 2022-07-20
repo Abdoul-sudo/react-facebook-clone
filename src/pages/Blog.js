@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Post, EndScroll, PostLoader, AddPost } from "../components";
+import { Post, EndScroll, PostLoader, AddPost, Chat } from "../components";
 
 const Blog = (props) => {
   const [posts, setPosts] = useState([]);
@@ -34,7 +34,7 @@ const Blog = (props) => {
       });
   };
 
-  // POST
+  // ADD POST  ---------------------------------------------------------------------------------------
   const addPost = (newPost) => {
     axios({
       method: "POST",
@@ -44,6 +44,23 @@ const Blog = (props) => {
     })
       .then((resp) => {
         setPosts([resp.data, ...posts]);
+      })
+      .catch((error) => {
+        console.log("🚀 ~ file: Blog.js ~ line 48 ~ addPost ~ error", error);
+      });
+  };
+
+  // DELETE POST -------------------------------------------------------------------------------------
+  const deletePost = (idPost) => {
+    console.log("🚀 ~ file: Blog.js ~ line 55 ~ deletePost ~ idPost", idPost);
+
+    axios({
+      method: "DELETE",
+      url: `${process.env.REACT_APP_API_SERVER}/posts/${idPost}`,
+    })
+      .then((resp) => {
+        console.log("🚀 ~ =======================file: Blog.js ~ line 61 ~ .then ~ resp", resp);
+        setPosts(posts.filter((post) => post.id !== idPost));
       })
       .catch((error) => {
         console.log("🚀 ~ file: Blog.js ~ line 48 ~ addPost ~ error", error);
@@ -81,23 +98,26 @@ const Blog = (props) => {
 
   // VIEW ---------------------------------------------------------------------------------------
   return (
-    <div className="h-full bg-main-bg-fb flex-grow xl:mr-40 overflow-y-auto">
-      <div className="mx-auto max-w-md md:max-w-lg">
-        <AddPost addPost={addPost} />
+    <>
+      <div className="h-full bg-main-bg-fb flex-grow xl:mr-60 overflow-y-auto">
+        <div className="mx-auto max-w-md 2xl:max-w-xl ">
+          <AddPost addPost={addPost} />
+        </div>
+        <InfiniteScroll
+          className="mx-auto max-w-md 2xl:max-w-xl" // centre les posts
+          dataLength={posts.length}
+          next={fetchPosts}
+          hasMore={hasMore}
+          loader={<PostLoader />}
+          endMessage={<EndScroll />}
+        >
+          {posts.map((post) => {
+            return <Post key={post.id} post={post} image={post.url} content={post.title} handleLike={handleLike} deletePost={deletePost} />;
+          })}
+        </InfiniteScroll>
       </div>
-      <InfiniteScroll
-        className="mx-auto max-w-md md:max-w-lg" // centre les posts
-        dataLength={posts.length}
-        next={fetchPosts}
-        hasMore={hasMore}
-        loader={<PostLoader />}
-        endMessage={<EndScroll />}
-      >
-        {posts.map((post) => {
-          return <Post key={post.id} post={post} image={post.url} content={post.title} handleLike={handleLike} />;
-        })}
-      </InfiniteScroll>
-    </div>
+      <Chat showChat={true} />
+    </>
   );
 };
 

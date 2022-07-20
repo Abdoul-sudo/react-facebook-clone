@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../index";
 import { AiFillLike, AiOutlineLike, AiOutlineShareAlt } from "react-icons/ai";
+import { BsThreeDots } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
 import axios from "axios";
 import { Comment, CommentLoader, AddComment } from "../index";
 import { useStateContext } from "../../context/GlobalContextProvider";
-import { UserConnectedProfile } from "../index";
+import { UserConnectedProfile, UserProfile } from "../index";
 
-const Card = ({ post, handleLike }) => {
+const Card = ({ post, handleLike, deletePost }) => {
   const [user, setUser] = useState("");
   const [isLiked, setIsLiked] = useState(false);
+  const [dropdownDisplay, setDropdownDisplay] = useState("hidden");
   const { userConnected } = useStateContext();
 
   const [comments, setComments] = useState([]);
@@ -35,6 +37,12 @@ const Card = ({ post, handleLike }) => {
 
     findUser();
   }, []);
+
+  //  LOGOUT
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
 
   // LIKE ---------------------------------------------------------------------------------------
   useEffect(() => {
@@ -96,10 +104,39 @@ const Card = ({ post, handleLike }) => {
       <div className="flex flex-col bg-main-bg-fb">
         <div className=" bg-white mt-5 rounded-2xl shadow-sm">
           {/* Profile */}
-          <div className="flex items-center space-x-2 mx-5 mt-5">
-            {userConnected.email === user.email && userConnected.username === user.username ? <UserConnectedProfile size="40" /> : <img className="rounded-full" src={user.image ? process.env.REACT_APP_IMAGE_PATH + user.image : `${process.env.REACT_APP_IMAGE_PATH}user_empty.jpg`} width={40} height={40} alt="" />}
+          <div className="flex justify-between">
+            <div className="flex items-center space-x-2 mx-5 mt-5">
+              {/* Si userPost == userConnected: profile connecté sinon profile normal */}
+              {userConnected.email === user.email && userConnected.username === user.username ? <UserProfile user={userConnected} size="40" isConnected={true} /> : <UserProfile user={user} size="40" />}
 
-            <div className="font-medium">{user.username}</div>
+              <div className="font-medium">{user.username}</div>
+            </div>
+            <button onClick={() => (dropdownDisplay == "hidden" ? setDropdownDisplay("block") : setDropdownDisplay("hidden"))} className="flex items-center justify-center w-8 h-8 mx-5 mt-5 rounded-full p-1 hover:bg-gray-100 ">
+              <BsThreeDots size={20} />
+            </button>
+          </div>
+
+          {/* Dropdown Post */}
+          <div className="relative">
+            <div id="dropdown" className={`${dropdownDisplay} absolute right-4 z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700`}>
+              <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                <li>
+                  <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Lorem, ipsum.
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    Lorem, ipsum.
+                  </a>
+                </li>
+                <li>
+                  <a onClick={() => deletePost(post.id)} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer text-red-500">
+                    Delete
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Title */}

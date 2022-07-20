@@ -7,5 +7,7 @@ set-executionpolicy unrestricted
 ## Lancer json server
 
 npm install -D -g json-server json-server-auth
-json-server --watch data/db.json --port 4000
+
+<!-- json-server --watch data/db.json --port 4000 -->
+
 json-server --watch data/db.json -m ./node_modules/json-server-auth --port 4000

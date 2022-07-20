@@ -10,6 +10,8 @@ const Login = () => {
     password: "",
   });
 
+  const [error, setError] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,9 +27,8 @@ const Login = () => {
         window.location.href = "/";
       })
       .catch((error) => {
-        console.log(JSON.stringify(formData));
-        console.log(process.env.REACT_APP_API_PORT);
         console.log("🚀 ~ file: Blog.jsx ~ line 36 ~ findUser ~ error", error);
+        setError(error.response.data);
       });
   };
 
@@ -44,18 +45,20 @@ const Login = () => {
             <img src="./logofb.png" alt="" className="h-32" />
           </div>
 
+          {error && <div className="text-red-500">{error}</div>}
+          {/* Form */}
           <form className="login-form" onSubmit={(e) => handleSubmit(e)}>
             {/* Email */}
             <label htmlFor="email" className="text-gray-700">
               Email
             </label>
-            <input type="text" className="w-full py-2 bg-gray-100 text-gray-500 px-1 outline-none mb-4 rounded-md border border-slate-300 focus:ring-1 focus:ring-sky-500" value={formData.email} name="email" onChange={(e) => handleChange(e)}></input>
+            <input type="text" className="w-full py-2 bg-gray-100 text-gray-500 px-1 outline-none mb-4 rounded-md border border-slate-300 focus:ring-1 focus:ring-sky-500" value={formData.email} name="email" onChange={(e) => handleChange(e)} placeholder="Email"></input>
 
             {/* Password */}
             <label htmlFor="password" className="text-gray-700">
               Password
             </label>
-            <input type="text" className="w-full py-2 bg-gray-100 text-gray-500 px-1 outline-none mb-4 rounded-md border border-slate-300 focus:ring-1 focus:ring-sky-500" value={formData.password} name="password" onChange={(e) => handleChange(e)}></input>
+            <input type="password" className="w-full py-2 bg-gray-100 text-gray-500 px-1 outline-none mb-4 rounded-md border border-slate-300 focus:ring-1 focus:ring-sky-500" value={formData.password} name="password" onChange={(e) => handleChange(e)} placeholder="Password"></input>
 
             {/* Login button */}
             <button className="bg-blue-500 w-full text-gray-100 py-2 rounded-lg shadow hover:bg-blue-600 transition-colors mt-4" type="submit">

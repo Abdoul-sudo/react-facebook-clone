@@ -1046,16 +1046,6 @@
       "userIdLike": []
     },
     {
-      "userId": 1,
-      "id": 98,
-      "title": "sed commodi libero id nesciunt modi vitae",
-      "url": "dome.jpg",
-      "thumbnailUrl": "https://via.placeholder.com/150/a77d08",
-      "userIdLike": [
-        3
-      ]
-    },
-    {
       "userId": 2,
       "id": 99,
       "title": "magnam dolor sed enim vel optio consequuntur",
@@ -1077,20 +1067,38 @@
       ]
     },
     {
-      "userId": 3,
-      "title": "salut",
+      "userId": 1,
+      "title": "aa",
       "url": "",
       "thumbnailUrl": "https://via.placeholder.com/150/7644fe",
       "userIdLike": [],
       "id": 101
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "sender_id": 10,
+      "receiver_id": 1,
+      "message": "Salut!!",
+      "creation": "December 25, 1995 23:15:00",
+      "isRead": false
     },
     {
-      "userId": 3,
-      "title": "Angel patience",
-      "url": "angel.jpg",
-      "thumbnailUrl": "https://via.placeholder.com/150/7644fe",
-      "userIdLike": [],
-      "id": 102
+      "id": 2,
+      "sender_id": 1,
+      "receiver_id": 10,
+      "message": "Salut! Cv?",
+      "creation": "December 26, 1995 00:15:00",
+      "isRead": false
+    },
+    {
+      "id": 3,
+      "sender_id": 10,
+      "receiver_id": 1,
+      "message": "Oui, très bien",
+      "creation": "December 26, 1995 00:20:00",
+      "isRead": false
     }
   ],
   "todos": [

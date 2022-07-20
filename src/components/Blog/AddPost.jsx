@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { UserConnectedProfile } from "../index";
+import { UserProfile } from "../index";
 import { useStateContext } from "../../context/GlobalContextProvider";
 import { IoMdImages } from "react-icons/io";
 import { RiLiveFill } from "react-icons/ri";
@@ -48,7 +48,7 @@ const AddPost = (props) => {
       {/* FORM AND USERCONNECTED --------------- */}
       <div className="flex space-x-4 p-4 items-center">
         {/* User profile */}
-        <UserConnectedProfile size="40" />
+        <UserProfile user={userConnected} size="40" isConnected={true} />
 
         {/* imput add post */}
         <form action="" className="flex flex-1">
@@ -72,7 +72,7 @@ const AddPost = (props) => {
           <span className="text-red-500">
             <RiLiveFill size={25} />
           </span>
-          <p className="text-xs sm:text-base">Live video</p>
+          <p className="text-xs sm:text-base">Live</p>
         </div>
 
         <div className="inputIcon" onClick={() => inputFileRef.current.click()}>

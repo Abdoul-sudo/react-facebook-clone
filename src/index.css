@@ -22,4 +22,8 @@ body {
   .inputIconSqueletton {
     @apply flex items-center space-x-1 flex-grow justify-center p-2 rounded-xl;
   }
+
+  .h-32rem {
+    height: 32rem !important;
+  }
 }

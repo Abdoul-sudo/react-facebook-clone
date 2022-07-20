@@ -4,6 +4,7 @@ export { default as Button } from "./Button";
 export { default as Sidebar } from "./Sidebar";
 export { default as Navbar } from "./Navbar";
 export { default as UserConnectedProfile } from "./UserConnectedProfile";
+export { default as UserProfile } from "./UserProfile";
 
 // Blog
 export { default as Post } from "./Blog/Post";
@@ -14,3 +15,4 @@ export { default as PostLoader } from "./Blog/PostLoader";
 export { default as Comment } from "./Blog/Comment";
 export { default as CommentLoader } from "./Blog/CommentLoader";
 export { default as AddComment } from "./Blog/AddComment";
+export { default as Chat } from "./Blog/Chat";

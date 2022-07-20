@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useStateContext } from "../../context/GlobalContextProvider";
-import UserConnectedProfile from "../UserConnectedProfile";
+import UserProfile from "../UserProfile";
 
 const Comment = ({ comment }) => {
   const [user, setUser] = useState("");
@@ -28,7 +28,7 @@ const Comment = ({ comment }) => {
     <>
       <div className="flex gap-3 mt-5 mr-9">
         {/* user image */}
-        <div className="mt-1">{userConnected.email === user.email && userConnected.username === user.username ? <UserConnectedProfile size="30" /> : <img className="rounded-full object-cover" src={user.image ? process.env.REACT_APP_IMAGE_PATH + user.image : `${process.env.REACT_APP_IMAGE_PATH}user_empty.jpg`} width={30} height={30} alt="" />}</div>
+        <div className="mt-1">{userConnected.email === user.email && userConnected.username === user.username ? <UserProfile user={userConnected} size="30" isConnected={true} /> : <UserProfile user={user} size="30" />}</div>
 
         {/* username and his comment */}
         <div className="bg-gray-100 w-full rounded-xl px-4 pt-1 pb-2 text-xs sm:text-base text-gray-600 ">
