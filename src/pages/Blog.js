@@ -25,9 +25,11 @@ const Blog = (props) => {
     if (props.userSpeakingWith.id) {
       console.log("🚀 ~ file: Blog.js ~ line 23 ~ useEffect ~ rops.userSpeakingWith", props.userSpeakingWith);
       setpageMessage(1);
+      setMessages([]);
+      sethasMoreMessages(true);
       fetchMessages(props.userSpeakingWith.id);
+      setShowChat(true);
     }
-    setShowChat(true);
   }, [props.userSpeakingWith]);
 
   // GET
@@ -150,6 +152,7 @@ const Blog = (props) => {
             return copyArr;
           })
           .then((copyArr) => {
+            console.log("message dans Blog.js ", messages);
             setMessages(copyArr.sort((a, b) => b.id - a.id));
           });
       })

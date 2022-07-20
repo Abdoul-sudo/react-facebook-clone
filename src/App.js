@@ -17,7 +17,6 @@ function App() {
   };
 
   const chatUser = (user) => {
-    console.log("🚀 ~ file: App.js ~ line 20 ~ chatUser ~ user", user);
     setUserSpeakingWith(user);
   };
 
