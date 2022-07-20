@@ -15,4 +15,6 @@ export { default as PostLoader } from "./Blog/PostLoader";
 export { default as Comment } from "./Blog/Comment";
 export { default as CommentLoader } from "./Blog/CommentLoader";
 export { default as AddComment } from "./Blog/AddComment";
-export { default as Chat } from "./Blog/Chat";
+export { default as Chat } from "./Chat/Chat";
+export { default as Message } from "./Chat/Message";
+export { default as AddMessage } from "./Chat/AddMessage";

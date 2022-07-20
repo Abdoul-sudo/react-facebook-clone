@@ -15,6 +15,8 @@ export const GlobalContextProvider = (props) => {
   const [isRegister, setIsRegister] = useState(false); // switch signUp signIn
   const [isClicked, setIsClicked] = useState(navbarState);
   const [screenSize, setScreenSize] = useState(undefined);
+  const [users, setUsers] = useState([]);
+  const [userSpeakingWith, setUserSpeakingWith] = useState({});
 
   var userConnected = "";
   if (localStorage.getItem("user")) {

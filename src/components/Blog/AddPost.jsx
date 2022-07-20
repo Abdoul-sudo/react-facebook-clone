@@ -14,6 +14,7 @@ const AddPost = (props) => {
   const sendPost = (e) => {
     e.preventDefault();
     if (!inputRef.current.value) return;
+
     const newPost = {
       userId: userConnected.id,
       title: inputRef.current.value,

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiFillMessage, AiOutlineMenu, AiOutlineMessage } from "react-icons/ai";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useStateContext } from "../context/GlobalContextProvider";
-import { UserConnectedProfile } from "./index";
+import { UserConnectedProfile, UserProfile } from "./index";
 import { FaFacebookSquare } from "react-icons/fa";
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
@@ -13,10 +13,11 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
   </button>
 );
 
-const Navbar = ({ handleLogout }) => {
+const Navbar = ({ handleLogout, chatUser, users }) => {
   const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick, screenSize, setScreenSize, userConnected } = useStateContext();
 
   const [dropdownProfileDisplay, setDropdownProfileDisplay] = useState("hidden");
+  const [dropdownUserList, setDropdownUserList] = useState("hidden");
 
   // A chq resize, on set le screenSize
   useEffect(() => {
@@ -50,8 +51,13 @@ const Navbar = ({ handleLogout }) => {
             <FaFacebookSquare /> <span>AppExam</span>
           </Link>
         </div>
-        <div className="flex">
-          {/* Profile */}
+        <div className="flex gap-6 items-center">
+          {/* Message icon ------------------------------------*/}
+          <button onClick={() => (dropdownUserList == "hidden" ? setDropdownUserList("block") : setDropdownUserList("hidden"))} className=" bg-gray-100 hover:bg-gray-200 rounded-full w-11 h-11 flex items-center justify-center text-blue-500">
+            <AiOutlineMessage size={25} />
+          </button>
+
+          {/* Profile ------------------------------------------*/}
           <button onClick={() => (dropdownProfileDisplay == "hidden" ? setDropdownProfileDisplay("block") : setDropdownProfileDisplay("hidden"))} className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" data-dropdown-toggle="dropdownUserProfile" type="button">
             <UserConnectedProfile size="40" />
             <p>
@@ -64,7 +70,7 @@ const Navbar = ({ handleLogout }) => {
 
       {/* Dropdown profile */}
       <div className="">
-        <div id="dropdownUserProfile" className={`${dropdownProfileDisplay} fixed right-3 top-16 w-44 p-2 border-t bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700`} style={{ zIndex: 10001 }}>
+        <div id="dropdownUserProfile" className={`${dropdownProfileDisplay} fixed right-3 top-16 w-44 p-2 border-t bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700`} style={{ zIndex: 10011 }}>
           <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
             <li>
               <a href="#" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
@@ -82,6 +88,21 @@ const Navbar = ({ handleLogout }) => {
               </a>
             </li>
           </ul>
+        </div>
+      </div>
+
+      {/* Dropdown user list */}
+      <div className="">
+        <div id="dropdownUserProfile" className={`${dropdownUserList} fixed right-28 top-16 w-80 p-2 border-t bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 overflow-y-auto`} style={{ zIndex: 10001 }}>
+          <div className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+            {users &&
+              users.map((user, index) => (
+                <button key={index} onClick={() => (setDropdownUserList("hidden"), chatUser(user))} className="flex gap-2 items-center w-full flex-wrap p-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer rounded-md">
+                  <UserProfile user={user} size={40} />
+                  <span className="block px-4 ">{user.username}</span>
+                </button>
+              ))}
+          </div>
         </div>
       </div>
     </>
