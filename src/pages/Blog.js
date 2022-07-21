@@ -20,17 +20,29 @@ const Blog = (props) => {
   useEffect(() => {
     fetchPosts();
   }, []);
-
+  const resetStates = () => {
+    setpageMessage(1);
+    setMessages([]);
+    sethasMoreMessages(true);
+    return true;
+  };
   useEffect(() => {
+    const showChatByUser = async (user) => {
+      await setpageMessage(1);
+      await setMessages([]);
+      await sethasMoreMessages(true);
+      console.log("mmmmmmmmmmm", messages, props.userSpeakingWith);
+      //if message is empty
+      if (messages.length === 0) {
+        fetchMessages(user.id);
+      }
+    };
     if (props.userSpeakingWith.id) {
-      console.log("🚀 ~ file: Blog.js ~ line 23 ~ useEffect ~ rops.userSpeakingWith", props.userSpeakingWith);
-      setpageMessage(1);
-      setMessages([]);
-      sethasMoreMessages(true);
-      fetchMessages(props.userSpeakingWith.id);
+      resetStates();
       setShowChat(true);
+      showChatByUser(props.userSpeakingWith);
     }
-  }, [props.userSpeakingWith]);
+  }, [props.userSpeakingWith.id]);
 
   // GET
   const fetchPosts = () => {
@@ -114,36 +126,26 @@ const Blog = (props) => {
   };
 
   // CHAT ========================================================================================================================================
-  // Get UserSpeakingWith -----------------------------------------------------------------
-  // const getUserSpeakingWith = (userId) => {
-  //   axios({
-  //     method: "GET",
-  //     url: `${process.env.REACT_APP_API_SERVER}/users/${userId}`,
-  //   })
-  //     .then((resp) => {
-  //       console.log("🚀 ~ file: Blog.js ~ line 72 ~ getUserSpeakingWith ~ resp", resp);
-  //       setUserSpeakingWith(resp.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log("🚀 ~ file: Blog.jsx ~ line 31 ~ fetchPosts ~ error", error);
-  //     });
-  // };
 
   // Get messages -------------------------------------------------------------------------
   const fetchMessages = (id_userSpeakedWith) => {
+    console.log("🚀 ~ file: Blog.js ~ line 120 ~ fetchMessages ~ id_userSpeakedWith", id_userSpeakedWith, pageMessage, hasMoreMessages);
     axios({
       method: "GET",
       url: `${process.env.REACT_APP_API_SERVER}/messages`,
       params: { receiver_id: userConnected.id, sender_id: id_userSpeakedWith, _sort: "id", _order: "desc", _page: pageMessage, _limit: 10 },
     })
       .then((resp) => {
+        console.log("🚀 ~ file: Blog.js ~ line 132 ~ .then ~ resp", resp);
         axios({
           method: "GET",
           url: `${process.env.REACT_APP_API_SERVER}/messages`,
           params: { sender_id: userConnected.id, receiver_id: id_userSpeakedWith, _sort: "id", _order: "desc", _page: pageMessage, _limit: 10 },
         })
           .then((response) => {
-            const copyArr = [...messages, ...resp.data, ...response.data];
+            console.log("🚀 ~ file: Blog.js ~ line 142 ~ .then ~ responseeeeeeeeeeeeeeeeeeee", response, resp);
+            let copyArr = [];
+            copyArr = [...messages, ...resp.data, ...response.data];
             if ((response.data.length === 0 || response.data.length < 10) && (resp.data.length === 0 || resp.data.length < 10)) {
               sethasMoreMessages(false);
               console.log("verif", (response.data.length === 0 || response.data.length < 10) && (resp.data.length === 0 || resp.data.length < 10));
@@ -152,7 +154,6 @@ const Blog = (props) => {
             return copyArr;
           })
           .then((copyArr) => {
-            console.log("message dans Blog.js ", messages);
             setMessages(copyArr.sort((a, b) => b.id - a.id));
           });
       })

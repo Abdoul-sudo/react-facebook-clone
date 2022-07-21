@@ -5,7 +5,7 @@ const Message = ({ message, userSpeakingWith }) => {
   return (
     <>
       {message.sender_id === userSpeakingWith.id && (
-        <div className="flex gap-2 pr-16 pl-2 pb-1.5">
+        <div className="flex gap-2 pr-16 pl-2 py-1.5">
           <UserProfile user={userSpeakingWith} size="30" />
           <div className="rounded-full p-2 px-4 border bg-gray-200 w-fit">{message.message}</div>
         </div>

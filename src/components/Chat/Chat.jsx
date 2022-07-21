@@ -1,10 +1,11 @@
 import React from "react";
-import { UserProfile } from "../index";
+import { UserProfile, CommentLoader } from "../index";
 import { IoMdClose } from "react-icons/io";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Message, AddMessage } from "../index";
 
 const Chat = ({ user, messages, showChat, fetchMessages, hasMoreMessages, closeChat, addMessage }) => {
+  console.log("🚀 ~ file: Chat.jsx ~ line 8 ~ Chat ~ messages", messages);
   return (
     <>
       {showChat && (
@@ -38,7 +39,11 @@ const Chat = ({ user, messages, showChat, fetchMessages, hasMoreMessages, closeC
                 style={{ display: "flex", flexDirection: "column-reverse" }}
                 inverse={true}
                 hasMore={hasMoreMessages}
-                loader={<span>Loading...</span>}
+                loader={
+                  <span className="flex justify-center">
+                    <CommentLoader />
+                  </span>
+                }
                 endMessage={<span></span>}
                 scrollableTarget="scrollableDiv"
               >
