@@ -111,9 +111,12 @@ const Card = ({ post, handleLike, deletePost }) => {
 
               <div className="font-medium">{user.username}</div>
             </div>
-            <button onClick={() => (dropdownDisplay == "hidden" ? setDropdownDisplay("block") : setDropdownDisplay("hidden"))} className="flex items-center justify-center w-8 h-8 mx-5 mt-5 rounded-full p-1 hover:bg-gray-100 ">
-              <BsThreeDots size={20} />
-            </button>
+            {/* Button delete post */}
+            {post.userId === userConnected.id && (
+              <button onClick={() => (dropdownDisplay == "hidden" ? setDropdownDisplay("block") : setDropdownDisplay("hidden"))} className="flex items-center justify-center w-8 h-8 mx-5 mt-5 rounded-full p-1 hover:bg-gray-100 ">
+                <BsThreeDots size={20} />
+              </button>
+            )}
           </div>
 
           {/* Dropdown Post */}

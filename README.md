@@ -21,19 +21,23 @@
 - Publier un Post (avec ou sans image, PS: image dans dossier public)
 - Liker un poste
 - Commenter un poste
-- Supprimer un poste
-- > Application responsive
+- Supprimer un poste (un utilisateur peut supprimer seulement son Post)
 
 ---
+
+## Bonus
+
+- Application responsive
+- Post lazy loading (loadés 3 à la fois onScroll)
 
 ## Logins déja présents (10):
 
 - email: abdl@gmail.com / password: 123456789
+- email: test@gmail.com / password: testtest
 - email: antonette@gmail.com / password: 123456789
 - email: samantha@gmail.com / password: 123456789
 - email: karianne@gmail.com/ password: 123456789
 - email: kamren@gmail.com / password: 123456789
-- email: test@gmail.com / password: testtest
 - ...
 
 ---

@@ -13,16 +13,16 @@ export const links = [
     ],
   },
 
-  {
-    title: "Dashboard",
-    links: [
-      {
-        path: "users",
-        name: "users",
-        icon: <RiUserSettingsFill />,
-      },
-    ],
-  },
+  // {
+  //   title: "Dashboard",
+  //   links: [
+  //     {
+  //       path: "users",
+  //       name: "users",
+  //       icon: <RiUserSettingsFill />,
+  //     },
+  //   ],
+  // },
 
   // {
   //   title: "Apps",

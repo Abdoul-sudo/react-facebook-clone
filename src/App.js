@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Sidebar, Navbar } from "./components";
-import { Blog, Todolist, Users, LoginPage } from "./pages";
+import { Blog, Users, LoginPage } from "./pages";
 import { useStateContext } from "./context/GlobalContextProvider";
 
 function App() {
@@ -61,7 +61,6 @@ function App() {
               <>
                 <Route path="/" element={<Blog limit="3" userSpeakingWith={userSpeakingWith} />} />
                 <Route path="posts" element={<Blog limit="3" userSpeakingWith={userSpeakingWith} />} />
-                <Route path="todos" element={<Todolist />} />
                 <Route path="users" element={<Users />} />
                 {/* not found route */}
                 <Route path="*" element={<h1>Not Found</h1>} />
