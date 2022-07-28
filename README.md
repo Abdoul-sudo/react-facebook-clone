@@ -1,10 +1,12 @@
 # Examen React JS : Blog
 
-## Dans powershell (admin)
+## Démarage de l'application
+
+### Dans powershell (admin)
 
 > set-executionpolicy unrestricted
 
-## Lancer l'application avec json server
+### Lancer l'application avec json server
 
 > npm install -D -g json-server json-server-auth
 
@@ -22,6 +24,8 @@
 - Supprimer un poste
 - > Application responsive
 
+---
+
 ## Utilisateurs déja présents (10):
 
 - email: abdl@gmail.com / password: 123456789
@@ -30,6 +34,8 @@
 - email: karianne@gmail.com/ password: 123456789
 - email: kamren@gmail.com / password: 123456789
 - email: test@gmail.com / password: testtest
+
+---
 
 ## Technologies
 
