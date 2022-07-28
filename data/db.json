@@ -64,11 +64,11 @@
       "password": "$2a$10$wyj3fhJbPR.ozQtqgfVCPOVJS0Z3lvP5h4kZj3St9Bn2bLwc7mTKy"
     },
     {
-      "id": 10,
-      "username": "Moriah.Stanton",
+      "email": "test@gmail.com",
+      "password": "$2a$10$4TtM/eTP15KhnCkD2QKsDOUiCYEKVEVjBJbrlPT.nXaLHFpDDsJPS",
+      "username": "Test",
       "image": "",
-      "email": "moriah@gmail.com",
-      "password": "$2a$10$wyj3fhJbPR.ozQtqgfVCPOVJS0Z3lvP5h4kZj3St9Bn2bLwc7mTKy"
+      "id": 10
     }
   ],
   "comments": [
@@ -269,6 +269,30 @@
       "postId": 100,
       "content": "qsdqsd",
       "id": 33
+    },
+    {
+      "userId": 10,
+      "postId": 103,
+      "content": "Like and comment ok",
+      "id": 37
+    },
+    {
+      "userId": 4,
+      "postId": 103,
+      "content": "Like and comment with another user ok",
+      "id": 38
+    },
+    {
+      "userId": 1,
+      "postId": 103,
+      "content": "ok",
+      "id": 39
+    },
+    {
+      "userId": 1,
+      "postId": 103,
+      "content": "good",
+      "id": 40
     }
   ],
   "posts": [
@@ -1079,12 +1103,23 @@
       ]
     },
     {
-      "userId": 1,
-      "title": "aa",
+      "userId": 10,
+      "title": "publication test",
       "url": "",
       "thumbnailUrl": "https://via.placeholder.com/150/7644fe",
       "userIdLike": [],
-      "id": 101
+      "id": 102
+    },
+    {
+      "userId": 10,
+      "title": "publication test avec image dans le dossier public",
+      "url": "angel.jpg",
+      "thumbnailUrl": "https://via.placeholder.com/150/7644fe",
+      "userIdLike": [
+        10,
+        4
+      ],
+      "id": 103
     }
   ],
   "messages": [

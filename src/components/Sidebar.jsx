@@ -5,7 +5,7 @@ import { FaFacebookSquare } from "react-icons/fa";
 import { links } from "../dummy";
 import { RiLogoutBoxLine } from "react-icons/ri";
 
-const Sidebar = ({ handleLogout }) => {
+const Sidebar = () => {
   const { activeMenu, setActiveMenu } = useStateContext();
 
   // Close le sidebar quand on clicque sur un link (pour mobile)
@@ -37,9 +37,6 @@ const Sidebar = ({ handleLogout }) => {
                   ))}
                 </div>
               ))}
-            </div>
-            <div className={logoutLink} onClick={handleLogout}>
-              <RiLogoutBoxLine /> <span className="capitalize">Sign out</span>
             </div>
           </div>
         </>

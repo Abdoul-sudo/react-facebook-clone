@@ -24,14 +24,14 @@ export const links = [
     ],
   },
 
-  {
-    title: "Apps",
-    links: [
-      {
-        path: "todos",
-        name: "todos",
-        icon: <RiTodoFill />,
-      },
-    ],
-  },
+  // {
+  //   title: "Apps",
+  //   links: [
+  //     {
+  //       path: "todos",
+  //       name: "todos",
+  //       icon: <RiTodoFill />,
+  //     },
+  //   ],
+  // },
 ];

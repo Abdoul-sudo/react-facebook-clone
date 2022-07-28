@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { AiFillMessage, AiOutlineMenu, AiOutlineMessage } from "react-icons/ai";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useStateContext } from "../context/GlobalContextProvider";
-import { UserConnectedProfile, UserProfile } from "./index";
+import { UserProfile } from "./index";
 import { FaFacebookSquare } from "react-icons/fa";
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
@@ -52,14 +52,9 @@ const Navbar = ({ handleLogout, chatUser, users }) => {
           </Link>
         </div>
         <div className="flex gap-6 items-center">
-          {/* Message icon ------------------------------------*/}
-          <button onClick={() => (dropdownUserList == "hidden" ? setDropdownUserList("block") : setDropdownUserList("hidden"))} className=" bg-gray-100 hover:bg-gray-200 rounded-full w-11 h-11 flex items-center justify-center text-blue-500">
-            <AiOutlineMessage size={25} />
-          </button>
-
           {/* Profile ------------------------------------------*/}
           <button onClick={() => (dropdownProfileDisplay == "hidden" ? setDropdownProfileDisplay("block") : setDropdownProfileDisplay("hidden"))} className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" data-dropdown-toggle="dropdownUserProfile" type="button">
-            <UserConnectedProfile size="40" />
+            <UserProfile user={userConnected} size="40" isConnected={true} />
             <p>
               <span className="text-gray-400 text-14">Hi, </span> <span className="text-gray-400 font-bold ml-1 text-14">{userConnected.username}</span>
             </p>

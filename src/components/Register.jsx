@@ -3,6 +3,7 @@ import axios from "axios";
 import { useStateContext } from "../context/GlobalContextProvider";
 import { AiFillFileImage } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { setIsRegister } = useStateContext();
@@ -15,6 +16,7 @@ const Login = () => {
     username: "",
     image: "",
   });
+  const [error, setError] = useState("");
 
   /******************************************* FORMULAIRE ************************************************* */
   const handleSubmit = async (e) => {
@@ -34,20 +36,22 @@ const Login = () => {
           password: "",
           image: "./Abdoul.jpg",
         });
-        toast.success("🦄 User added successfully", {
+        toast.success("🎉 User successfully registered", {
           position: "top-right",
-          autoClose: 5000,
+          autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
         });
-        window.location("/");
+        setTimeout(() => {
+          window.location.replace("/");
+        }, 2000);
       })
       .catch((error) => {
-        console.log(JSON.stringify(formData));
         console.log("🚀 ~ file: Register.jsx ~ line 39 ~ handleSubmit ~ error", error);
+        setError(error.response.data);
       });
   };
 
@@ -75,6 +79,10 @@ const Login = () => {
             <div className="flex items-center justify-center mb-4">
               <img src="./logofb.png" alt="" className="h-32" />
             </div>
+
+            {/* Error message  */}
+            {error && <div className="text-red-500">{error}</div>}
+
             <form className="login-form" onSubmit={(e) => handleSubmit(e)}>
               {/* username ------------------------------------------------------------------------------------------------------------- */}
               <label htmlFor="username" className="text-gray-700">
@@ -95,7 +103,7 @@ const Login = () => {
               <input type="password" className="w-full py-2 bg-gray-100 text-gray-500 px-1 outline-none mb-4 rounded-md border border-slate-300 focus:ring-1 focus:ring-sky-500" value={formData.password} name="password" onChange={(e) => handleChange(e)} required></input>
 
               {/* pdp -------------------------------------------------------------------------------------------------------------*/}
-              <div className="flex justify-center">
+              {/* <div className="flex justify-center">
                 <div className="mb-3 w-96">
                   <label className="form-label inline-block mb-2 text-gray-700">Photo</label>
                   <input type="file" className="hidden" ref={inputImage} name="image" onChange={handleImageInput} />
@@ -106,7 +114,7 @@ const Login = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <button className="bg-blue-500 w-full text-gray-100 py-2 rounded-lg shadow hover:bg-blue-600 transition-colors mt-4" type="submit">
                 Register

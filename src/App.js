@@ -7,8 +7,8 @@ import { Blog, Todolist, Users, LoginPage } from "./pages";
 import { useStateContext } from "./context/GlobalContextProvider";
 
 function App() {
-  const { activeMenu, userConnected } = useStateContext();
-  const [userSpeakingWith, setUserSpeakingWith] = useState({});
+  const { activeMenu, userConnected, userSpeakingWith, setUserSpeakingWith } = useStateContext();
+  // const [userSpeakingWith, setUserSpeakingWith] = useState({});
   const [users, setUsers] = useState([]);
 
   const handleLogout = () => {
@@ -45,11 +45,11 @@ function App() {
             {/* Hide Sidebar for mobile */}
             {activeMenu ? (
               <div className="w-72 fixed top-11">
-                <Sidebar handleLogout={handleLogout} />
+                <Sidebar />
               </div>
             ) : (
               <div className="w-0">
-                <Sidebar handleLogout={handleLogout} />
+                <Sidebar />
               </div>
             )}
           </div>

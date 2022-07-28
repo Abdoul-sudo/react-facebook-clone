@@ -4,7 +4,7 @@ import { AiFillLike, AiOutlineLike, AiOutlineShareAlt } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
 import axios from "axios";
-import { Comment, CommentLoader, AddComment } from "../index";
+import { Comment, SpinnerLoader, AddComment } from "../index";
 import { useStateContext } from "../../context/GlobalContextProvider";
 import { UserConnectedProfile, UserProfile } from "../index";
 
@@ -199,7 +199,7 @@ const Card = ({ post, handleLike, deletePost }) => {
                 </div>
               ) : (
                 <div className="min-h-12 flex  items-center justify-center rounded-b-2xl bg-gray shadow-sm text-gray-400 border-t pb-4">
-                  <CommentLoader />
+                  <SpinnerLoader />
                 </div>
               )}
             </div>

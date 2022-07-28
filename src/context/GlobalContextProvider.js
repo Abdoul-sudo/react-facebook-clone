@@ -23,7 +23,7 @@ export const GlobalContextProvider = (props) => {
     userConnected = JSON.parse(localStorage.getItem("user")); // get the user connected from localStorage
   }
 
-  return <GlobalContext.Provider value={{ activeMenu, setActiveMenu, userConnected, isRegister, setIsRegister, screenSize, setScreenSize }}>{props.children}</GlobalContext.Provider>;
+  return <GlobalContext.Provider value={{ activeMenu, setActiveMenu, userConnected, isRegister, setIsRegister, screenSize, setScreenSize, userSpeakingWith, setUserSpeakingWith }}>{props.children}</GlobalContext.Provider>;
 };
 
 export const useStateContext = () => useContext(GlobalContext);

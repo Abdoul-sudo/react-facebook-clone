@@ -45,7 +45,9 @@ const Login = () => {
             <img src="./logofb.png" alt="" className="h-32" />
           </div>
 
+          {/* Error message  */}
           {error && <div className="text-red-500">{error}</div>}
+
           {/* Form */}
           <form className="login-form" onSubmit={(e) => handleSubmit(e)}>
             {/* Email */}
