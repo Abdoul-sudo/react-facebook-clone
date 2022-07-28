@@ -26,7 +26,7 @@
 
 ---
 
-## Utilisateurs déja présents (10):
+## Logins déja présents (10):
 
 - email: abdl@gmail.com / password: 123456789
 - email: antonette@gmail.com / password: 123456789
@@ -34,6 +34,7 @@
 - email: karianne@gmail.com/ password: 123456789
 - email: kamren@gmail.com / password: 123456789
 - email: test@gmail.com / password: testtest
+- ...
 
 ---
 
