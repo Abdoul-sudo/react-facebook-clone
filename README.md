@@ -1,4 +1,4 @@
-# React JS : Blog
+# React JS - Json server : Facebook clone
 
 ### Lancer l'application avec json server
 
