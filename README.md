@@ -1,10 +1,4 @@
-# Examen React JS : Blog
-
-## Démarage de l'application
-
-### Dans powershell (admin)
-
-> set-executionpolicy unrestricted
+# React JS : Blog
 
 ### Lancer l'application avec json server
 
@@ -23,14 +17,14 @@
 - Commenter un poste
 - Supprimer un poste (un utilisateur peut supprimer seulement son Post)
 
----
-
-## Bonus
-
 - Application responsive
 - Post lazy loading (loadés 3 à la fois onScroll)
 
-## Logins déja présents (10):
+---
+
+## Fonctionnalités Bonus
+
+## Logins déja présents (10 utilisateurs dans data/db.json):
 
 - email: abdl@gmail.com / password: 123456789
 - email: test@gmail.com / password: testtest
@@ -42,8 +36,17 @@
 
 ---
 
-## Technologies
+## Outils
 
 - React js
 - Json server
 - Tailwind css
+
+---
+
+## Résultat
+
+![login](./public/finished/login.png)
+![loader](./public/finished/vide.png)
+![posts](./public/finished/posts.png)
+![like_comment](./public/finished/like_comment.png)

@@ -3,8 +3,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Sidebar, Navbar } from "./components";
-import { Blog, Users, LoginPage } from "./pages";
 import { useStateContext } from "./context/GlobalContextProvider";
+import { Blog, Users, LoginPage } from "./pages";
 
 function App() {
   const { activeMenu, userConnected, userSpeakingWith, setUserSpeakingWith } = useStateContext();

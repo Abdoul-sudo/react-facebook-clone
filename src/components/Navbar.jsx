@@ -48,7 +48,7 @@ const Navbar = ({ handleLogout, chatUser, users }) => {
       <div className="fixed-top w-full flex justify-between py-2 md:pl-10 md:pr-4 items-center shadow-md bg-white">
         <div className="flex justify-between items-center">
           <Link to="/" className="items-center gap-3 flex text-2xl font-extrabold tracking-light text-slate-900 text-sky-900">
-            <FaFacebookSquare /> <span>AppExam</span>
+            <FaFacebookSquare /> <span>FB Clone</span>
           </Link>
         </div>
         <div className="flex gap-6 items-center">
