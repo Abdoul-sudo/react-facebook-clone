@@ -22,8 +22,6 @@
 
 ---
 
-## Fonctionnalités Bonus
-
 ## Logins déja présents (10 utilisateurs dans data/db.json):
 
 - email: abdl@gmail.com / password: 123456789
