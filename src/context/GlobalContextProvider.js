@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import axios from "axios";
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const GlobalContext = createContext();
 
@@ -18,12 +18,32 @@ export const GlobalContextProvider = (props) => {
   const [users, setUsers] = useState([]);
   const [userSpeakingWith, setUserSpeakingWith] = useState({});
 
-  var userConnected = "";
-  if (localStorage.getItem("user")) {
-    userConnected = JSON.parse(localStorage.getItem("user")); // get the user connected from localStorage
+  var userConnected = '';
+  localStorage.setItem(
+    'user',
+    JSON.stringify({ id: 1, username: 'Abdoul07', image: 'Abdoul.jpg', email: 'abdl@gmail.com' })
+  );
+  if (localStorage.getItem('user')) {
+    userConnected = JSON.parse(localStorage.getItem('user')); // get the user connected from localStorage
   }
 
-  return <GlobalContext.Provider value={{ activeMenu, setActiveMenu, userConnected, isRegister, setIsRegister, screenSize, setScreenSize, userSpeakingWith, setUserSpeakingWith }}>{props.children}</GlobalContext.Provider>;
+  return (
+    <GlobalContext.Provider
+      value={{
+        activeMenu,
+        setActiveMenu,
+        userConnected,
+        isRegister,
+        setIsRegister,
+        screenSize,
+        setScreenSize,
+        userSpeakingWith,
+        setUserSpeakingWith,
+      }}
+    >
+      {props.children}
+    </GlobalContext.Provider>
+  );
 };
 
 export const useStateContext = () => useContext(GlobalContext);
